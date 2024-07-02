@@ -1,0 +1,4 @@
+cd C:\Users\OLLE EZZEDINE\Desktop\salary
+conda activate DEV
+python manage.py runserver
+Saisir l'URL localhost:8000 dans le navigateur

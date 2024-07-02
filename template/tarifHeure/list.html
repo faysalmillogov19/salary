@@ -1,0 +1,57 @@
+{% extends 'layout/Layout.html'%}
+<!-- Page Heading -->
+{% load static %}
+{% block content %}
+
+{% include  'modal_form.html' %}
+
+
+<div class="card shadow mb-4">
+                       <div class="card-header py-3">
+                         <div class="">
+                             <h4 class="">Element des heures suplementaire </h4>
+                         </div>
+                         <div class="">                              
+                            <a href="{% url 'update_createTarifHeureSup' 0 %}" type="button" class="btn btn-primary float-right">NOUVEAU <i class="fas fa-plus"></i></a>
+
+                         </div>
+                       </div>
+                       <div class="card-body">
+                           <div class="table-responsive">
+                               <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                   <thead>
+                                       <tr>
+                                         <th>Taux</th>
+                                         <th>Jour ferier</th>
+                                         <th>Nuit</th>
+                                        
+                                         <th>Action</th>
+                                       </tr>
+                                   </thead>
+                                   <tbody>
+                                     {% for ligne in tarifHeureSup %}
+                                      <tr>
+                                           <td>{{ligne.taux}}</td>
+                                           <td>{% if ligne.jourFerie %}Oui{% else %}Non{% endif %}</td>
+                                           <td>{% if ligne.nuit %}Oui{% else %}Non{% endif %}</td>
+                                           
+                                           <td>
+                                               <a href="{% url 'update_createTarifHeureSup' ligne.id%}" type="button" class="btn btn-outline-success"><i class="fas fa-pen"></i></a>
+                                           
+                                                <button type="button" data-toggle="modal" data-target="#delete{{ligne.id}}" class="btn btn-outline-danger"><i class="fas fa-trash"></i></button>                                           </td>
+                                           
+
+                                        </tr>
+                                       {%include 'tarifHeure/confirm_delete.html'%}
+                                     {% endfor %}
+                                       
+                                   </tbody>
+                                   
+                               </table>
+                           </div>
+                       </div>
+                   </div>
+
+
+
+ {% endblock %}

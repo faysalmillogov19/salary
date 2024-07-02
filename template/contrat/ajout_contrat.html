@@ -1,0 +1,71 @@
+{% extends 'layout/Layout.html' %}
+
+<!-- Page Heading -->
+{% load static %}
+
+{% block content %}
+<div class="container">
+    <div class="card">
+        <div class="card-header py-3">
+            <div class="">
+                <h5 class="">Ajouter un nouveau contrat </h5>
+            </div>
+        </div>
+        <form class="card-body" method="post" action="" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <div class="card-footer">
+                <div class="float-right">
+                    <button type="submit" class="btn btn-primary">Enregistrer</button>
+                    <a type="reset" class="btn btn-secondary" href="{% url 'contrat' %}">Retour</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Inclure jQuery -->
+<script src="{% static 'vendor/jquery/jquery.js' %}"></script>
+
+<!-- Script jQuery pour le formulaire de contrat -->
+<script>
+    $(document).ready(function () {
+        function updateDateFields() {
+            var typeContrat = $("#id_type_contrat").val();
+            if (typeContrat == "CDI") {
+                $("#id_date_fin").hide();
+                $("#id_date_debut").show();
+            } else {
+                $("#id_date_debut").show();
+                $("#id_date_fin").show();
+            }
+        }
+
+        updateDateFields();
+
+        $("#id_type_contrat").change(function () {
+            updateDateFields();
+        });
+        $("button[type='submit']").on("click", function() {});
+    });
+
+    $(document).ready(function() {
+    // Ecouter les changements dans le champ Type de Contrat
+    $('#id_type_contrat').change(function() {
+        // Récupérer la valeur sélectionnée dans le champ Type de Contrat
+        var typeContrat = $(this).val();
+        
+        // Mettre à jour le champ Contrat Document en fonction du type de contrat sélectionné
+        if (typeContrat === 'CDD') {
+            $('#id_contrat_doc option[value="3"]').prop('selected', true); 
+            // Remplacer '1' par la valeur de l'option pour Contrat_travail_CDD
+        } else if (typeContrat === 'CDI') {
+            $('#id_contrat_doc option[value="4"]').prop('selected', true); 
+            // Remplacer '2' par la valeur de l'option pour Contrat_travail_CDI
+        }
+    });
+});
+
+</script>
+
+{% endblock %}

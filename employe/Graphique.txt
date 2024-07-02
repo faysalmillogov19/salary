@@ -1,0 +1,6 @@
+Graphique
+
+Avoir sous forme de diagramme ou histogramme les paiements par structure sur une periode donnée
+Avoir sous forme de diagramme ou histogramme les paiements de toutes structures sur une periode donnée
+Avoir sous forme de diagramme ou histogramme le nombre d'emplye par structure
+Voir l'evolution des paiement du salire d'un employe en definissant une plage de periode donnée

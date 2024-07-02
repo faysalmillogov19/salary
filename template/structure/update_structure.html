@@ -1,0 +1,24 @@
+ {% extends 'layout/Layout.html'%}
+ <!-- Page Heading -->
+ {% load static %}
+ {% block content %}
+ <div class="card">	
+  	<div class="container sm-3">
+	 	<div class="row">
+	 		<div class="col-sm-8 offset-2">
+	 			<h3 class="alert alerte-info">Modifier les information d'une structure</h3>
+	 			<form class="card-body form-group" action="" method="post" enctype="multipart/form-data">
+	 				{%  csrf_token %}
+	 				{{form.as_p}}
+	 				<div class="form-group">
+	 					<input type="submit" class="btn btn-success" name="" value="Enregistrer">
+	 					<a href="{% url 'structure' %}" class="btn btn-info">Retour</a>
+	 				</div>
+	 			</form>
+	 		</div>
+	 	</div>
+ 	</div>
+</div> 
+
+
+ {% endblock %}

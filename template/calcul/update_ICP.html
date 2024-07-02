@@ -1,0 +1,57 @@
+ <div class="modal fade" id="update_icp{{d.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document" >        
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">ICP(Indemnités de Congés Payés)</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <form class="modal-body" method="POST" action="{% url 'paiement_icp' d.paiement.id %}" enctype="multipart/form-data">
+                {% csrf_token %}
+               
+                <input type="hidden" name="id_contrat" value="{{contrat.id}}">
+
+                <div class="row">
+                    <div class="form-group col-6 font-weight-bold">
+                        <label for="id_description">Mois</label>
+                        <select type="number" class="form-control" name="mois" required>
+                            <option value="{{d.paiement.mois.id}}">{{d.paiement.mois.libelle}}</option>
+                            {% for m in mois %}
+                                <option value="{{m.id}}">{{m.libelle}}</option>
+                            {% endfor%}
+                        </select>
+                    </div>
+                    <div class="form-group col-6 font-weight-bold">
+                        <label for="id_description">Annee</label>
+                        <select type="number" class="form-control" name="annee" min="0" required>
+                            <option value="{{d.paiement.annee.id}}">{{d.paiement.annee.exercice}}</option>
+                                <option value="{{annee.id}}">{{annee.exercice}}</option>
+                        </select>
+                    </div>
+ 
+                </div>
+                
+                <div class="row">
+                    <div class="form-group col-6 font-weight-bold">
+                        <label for="id_description">Surplus de salaire</label>
+                        <input type="number" class="form-control" name="surplus" min="0" value="{{d.paiement.surplus_salaire}}">
+                    </div>
+                    <div class="form-group col-6 font-weight-bold">
+                        <label for="id_description">Reliquat</label>
+                        <input type="number" class="form-control" name="relicat" min="0" value="{{d.paiement.relicat_salaire}}">
+                    </div>
+
+                </div>
+                
+                <div class="card-footer">
+                       <div class="float-right">
+                           <button type="submit" class="btn btn-primary">Enregister</button>
+                           <button type="reset" class="btn btn-secondary" >Annuler</button>
+                       </div>
+                     
+                </div>
+
+            </form>
+            
+        </div>
+    </div>
+</div>

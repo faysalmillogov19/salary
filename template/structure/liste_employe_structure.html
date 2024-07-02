@@ -1,0 +1,90 @@
+ {% extends 'layout/Layout.html'%}
+ <!-- Page Heading -->
+ {% load static %}
+ {% block content %}
+
+
+   <div class="">
+      <div class="card">
+         <div class="card-body">
+   <div class="row">
+      <div class="col-md-3">
+         <div class="card shadow mb-5">
+            <div class="card-header py-3">
+               <div class="">
+                  <h4 class="">les informations de la structure {{structure.denomination}}</h4>
+               </div>
+               <ul class="list-group">
+                 <li class="list-group-item">Nom de la structure : <mark>{{ structure.denomination }}</mark></li>
+                 <li class="list-group-item">Adresse de <mark>{{structure.denomination}} : {{structure.adresse}}</mark></li>
+                 <li class="list-group-item">Email de <mark>{{structure.denomination}}: {{structure.email}}</mark></li>
+                 <li class="list-group-item">Telephone de <mark>{{structure.denomination}}: {{structure.telephone}}</mark></li>
+                 <li class="list-group-item">La structure {{structure.denomination}} compte <mark>{{nombre_employes}}</mark> employés</li>
+               </ul>
+            <!-- <p class="font-weight-bold">Nom de la structure : <mark>{{ structure.denomination }}</mark></p>
+            <p class="font-weight-bold">Description de {{structure.denomination}} : {{structure.description_structure}}</p>
+            <p class="font-weight-bold">Adresse de {{structure.denomination}} : {{structure.adresse}}</p>
+            <p class="font-weight-bold">Email de {{structure.denomination}}: {{structure.email}}</p>
+            <p class="font-weight-bold">Telephone de {{structure.denomination}}: {{structure.telephone}}</p>
+            <p class="font-weight-bold">La structure {{structure.denomination}} compte {{nombre_employes}} employés</p> -->
+         </div>
+      </div>
+   </div>
+            
+   <div class="col-md-8">
+      <div>
+         <div>
+            <div>
+               <div>
+               <h4>Liste des employés de la structure {{structure.denomination}}</h4>
+            </div>
+            <div class="">                              
+               <a class="btn btn-outline-info float-right" href="{% url 'add_employe' %}">NOUVEAU <i class="fas fa-plus"></i></a>
+            </div>
+         </div>
+            
+         <div>
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+               <thead>
+                     <tr>
+                        <th>Matricule</th>
+                        <th>Nom</th>
+                        <th>Date de naissance</th>
+                        <th>Nombre d'enfants</th>
+                        <th>Action</th>
+                     </tr>
+               </thead>
+                     {% for employe in employes %}
+                    <tbody>
+                        
+                        <td>{{employe.numero_matricule}}</td>
+                        <td>{{employe.nom|add:" "|add:employe.prenoms}}</td>
+                        <td>{{employe.date_naissance| date:"d/m/y"}}</td>
+                        <td>{{employe.nombre_enfant}}</td>
+                        <td>
+                           <div class="d-flex">
+                              <div><a href="{% url  'dossier_employe' employe.id %}" type="button" class="btn btn-outline-warning"><i class="fas fa-folder"></i></a></div>
+
+                              <div><a href="{% url 'updateemploye' employe.id %}" type="button" class="btn btn-outline-success"><i class="fas fa-pen"></i></a></div>
+
+                              <div><button type="button" data-toggle="modal" data-target="#delete{{employe.id}}" class="btn btn-outline-danger"><i class="fas fa-trash"></i></button></div>
+                           
+                           
+                           </div>
+                        </td>
+                            {% include  'employe/modal_update_form.html' %}
+                    </tbody>
+                        {% endfor %}
+                </table>
+            </div>
+         </div>
+
+         </div>
+      </div>
+</div>
+
+</div>
+
+    
+
+{% endblock %}

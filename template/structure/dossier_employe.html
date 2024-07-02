@@ -1,0 +1,35 @@
+ {% extends 'layout/Layout.html'%}
+ <!-- Page Heading -->
+ {% load static %}
+ {% block content %}
+
+<div class="card">
+    <div class="container">
+        <div>
+            <div>
+                <h3>Les dossiers de {{ employes.nom }}</h3>
+            </div>
+            <div>
+               <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                  <thead>
+                     <tr>
+                        <th>CV</th>
+                        <th>Lettre de motivation</th>
+                        <th>Diplôme</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     <tr>
+                       <td>{{ employes.cv.url }}</td>
+                       <td>{{ employes.lettre_motivation.url }}</td>
+                       <td>{{ employes.diplome.url }}</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

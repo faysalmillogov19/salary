@@ -1,0 +1,36 @@
+{% extends 'layout/Layout.html'%}
+<!-- Page Heading -->
+{% load static %}
+{% block content %}
+
+                       
+                       <div class="container">
+                           <div class="card container">
+                               <div class="card-header py-3">
+                                   <div class="">
+                                       <h5 class="">Ajouter un fichier  </h5>
+                                   </div>
+                               </div>
+                               <form class="card-body" method="post" action="" enctype="multipart/form-data">
+                                   {% csrf_token %}
+                                   <div class="form-group font-weight-bold">
+                                    <label for="id_fichier">fichier excel</label>
+                                    <input type="file" class="form-control" name="fichier" required>
+                                  </div>
+                                   
+                                   <div class="card-footer">
+                                       <div class="float-right">
+                                           <button type="submit" class="btn btn-primary">Enregister</button>
+                                    
+                                       </div>
+                                     
+                                   </div>
+                             </form>
+                             
+                           </div>
+                       </div>
+                   
+
+
+
+ {% endblock %}

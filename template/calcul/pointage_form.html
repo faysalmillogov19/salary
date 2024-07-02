@@ -1,0 +1,107 @@
+ <div class="modal fade" id="pointage_form" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document" >        
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">POINTAGE</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <form class="modal-body" method="POST" action="{% url 'pointage' 0 %}" enctype="multipart/form-data">
+                {% csrf_token %}
+               
+               <input type="hidden" name="id_contrat" value="{{contrat.id}}">
+
+               <div class="row">
+                <div class="form-group col-4 font-weight-bold">
+                    <label for="id_description">Mois</label>
+                    <select type="number" class="form-control" name="mois" required>
+                        {% for m in mois %}
+                            <option value="{{m.id}}">{{m.libelle}}</option>
+                        {% endfor%}
+                    </select>
+                </div>
+                <div class="form-group col-4 font-weight-bold">
+                    <label for="id_description">Annee</label>
+                    <select type="number" class="form-control" name="annee" min="0" required>
+                        
+                            <option value="{{annee.id}}">{{annee.exercice}}</option>
+                    </select>
+                </div>
+                <div class="form-group col-4 font-weight-bold">
+                    <label for="id_description">Nb jours de travail</label>
+                    <input type="number" class="form-control" name="nb_jour_travail_normal" min="0" value="{{par.nb_jour_travail_normal}}" required>
+                </div>
+
+            </div>
+
+                
+                <div class="row">
+                    <div class="form-group col-4 font-weight-bold">
+                        <label for="id_description">Heures Normales</label>
+                        <input type="number" name="nb_h_normal" class="form-control" min="0" value="0" required>
+                    </div>
+                    <div class="form-group col-4 font-weight-bold">
+                        <label for="id_description">Majoration 15%</label>
+                        <input type="number" class="form-control" name="nb_h_15" min="0" value="0" required>
+                    </div>
+                    <div class="form-group col-4 font-weight-bold">
+                        <label for="id_description">Majoration 35%</label>
+                        <input type="number" class="form-control" min="0" name="nb_h_35" value="0" required>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="form-group col-4 font-weight-bold">
+                        <label for="id_description">Majoration 50%</label>
+                        <input type="number" class="form-control" min="0" name="nb_h_50" value="0" required>
+                    </div>
+                    <div class="form-group col-4 font-weight-bold">
+                        <label for="id_description">Majoration 60%</label>
+                        <input type="number" class="form-control" min="0" name="nb_h_60" value="0" required>
+                    </div>
+                    <div class="form-group col-4 font-weight-bold">
+                        <label for="id_description">Majoration 120%</label>
+                        <input type="number" class="form-control" min="0" name="nb_h_120" value="0" required>
+                    </div>
+
+                </div>
+                
+                <div class="row">
+                    {% if contrat.prime_quart %}
+                    <div class="form-group col-6 font-weight-bold">
+                        <label for="id_description">Nombre de quart</label>
+                        <input type="number" class="form-control" name="nb_quart" min="0" value="0">
+                    </div>
+                    {% endif %}
+                    {% if contrat.prime_panier %}
+                    <div class="form-group col-6 font-weight-bold">
+                        <label for="id_description">Nbre jours de travail(Panier)</label>
+                        <input type="number" class="form-control" min="0" name="nb_jour" value="0">
+                    </div>
+                    {% endif %}
+
+                </div>
+                <div class="row">
+                    <div class="form-group col-6 font-weight-bold">
+                        <label for="id_description">Surplus de salaire</label>
+                        <input type="number" class="form-control" name="surplus" min="0" value="0" required>
+                    </div>
+                    <div class="form-group col-6 font-weight-bold">
+                        <label for="id_description">Reliquat</label>
+                        <input type="number" class="form-control" name="relicat" min="0" value="0" required>
+                    </div>
+
+                </div>
+
+
+                   <div class="card-footer">
+                       <div class="float-right">
+                           <button type="submit" class="btn btn-primary">Enregister</button>
+                           <button type="reset" class="btn btn-secondary" >Annuler</button>
+                       </div>
+                     
+                   </div>
+            </form>
+            
+        </div>
+    </div>
+</div>

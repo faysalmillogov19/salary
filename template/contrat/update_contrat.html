@@ -1,0 +1,40 @@
+ {% extends 'layout/Layout.html'%}
+ <!-- Page Heading -->
+ {% load static %}
+ {% block content %}
+ 	<div class="container sm-9">
+	 	<div class="row">
+	 		<div class="card col-sm-8 offset-2">
+	 			<h3 class="alert alerte-info">Modifier les information d'un contrat</h3>
+	 			<form class="card-body" action="" method="post">
+	 				{%  csrf_token %}
+	 				{{form.as_p}}
+	 				<div class="form-group">
+	 					<input type="submit" class="btn btn-success" name="" value="Enregistrer">
+	 					<a href="{% url 'contrat' %}" class="btn btn-info">Retour</a>
+	 				</div>
+	 			</form>
+	 		</div>
+	 	</div>
+ 	</div>
+
+
+ 	<script>
+ 			$(document).ready(function() {
+    // Ecouter les changements dans le champ Type de Contrat
+    $('#id_type_contrat').change(function() {
+        // Récupérer la valeur sélectionnée dans le champ Type de Contrat
+        var typeContrat = $(this).val();
+        
+        // Mettre à jour le champ Contrat Document en fonction du type de contrat sélectionné
+        if (typeContrat === 'CDD') {
+            $('#id_contrat_doc option[value="3"]').prop('selected', true); 
+            // Remplacer '1' par la valeur de l'option pour Contrat_travail_CDD
+        } else if (typeContrat === 'CDI') {
+            $('#id_contrat_doc option[value="4"]').prop('selected', true); 
+            // Remplacer '2' par la valeur de l'option pour Contrat_travail_CDI
+        }
+    });
+});
+ 	</script>
+ {% endblock %}

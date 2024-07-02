@@ -1,0 +1,64 @@
+{% extends 'layout/Layout.html'%}
+<!-- Page Heading -->
+{% load static %}
+{% block content %}
+
+{% include  'scan/import_cnib_scan.html' %}
+
+
+<div class="shadow mb-4">
+            <div class="row">
+                       
+                     <div class="col-12 card">
+                            <div class="card-header"> 
+                            <div class="float-right">
+                              <button type="button" data-toggle="modal" data-target="#import_cnib_form" class="btn btn-outline-info"><i class="fas fa-print">Import</i></button>                             
+                            </div>
+                            </div>
+                           <div class="table-responsive card-body">
+                               <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                   <thead>
+                                       <tr>
+                                        <th>Numéro</th> 
+                                        <th>Nom</th>
+                                         <th>Prenom</th>
+                                         <th>Date de naissance</th>
+                                         <th>Sexe</th>
+                                         <th>Taille</th>
+                                         <th>Profession</th>
+                                         <th>Expire</th>
+                                         <th>Enregistré</th>
+                                       </tr>
+                                   </thead>
+                                   <tbody>
+                                     {% for d in data %}
+                                      <tr>
+                                           <td>{{d.numero}}</td>
+                                           <td>{{d.nom}}</td>
+                                           <td>{{d.prenoms}}</td>
+                                           <td>{{d.date_naiss}}</td>
+                                           <td>{{d.sexe}}</td>
+                                           <td>{{d.taille}}</td>
+                                           <td>{{d.profession}}</td>
+                                           <td>{{d.expire}}</td>
+                                           <td class="text-center">
+                                            {% if d.enregistre %}
+                                                <i class="fa fa-check" style="color: green;"> </i>
+                                              {% else %}
+                                                  <i class="fa fa-times" style="color: red;"> </i>
+                                              {% endif %}
+                                           </td>
+                                      </tr>
+                                    {% endfor %}
+                                       
+                                   </tbody>
+                                   
+                               </table>
+                           </div>
+                    </div>
+          </div>
+</div>
+
+
+
+ {% endblock %}

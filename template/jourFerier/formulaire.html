@@ -1,0 +1,56 @@
+{% extends 'layout/Layout.html'%}
+<!-- Page Heading -->
+{% load static %}
+{% block content %}
+
+{% include  'modal_form.html' %}
+
+
+<div class="container">
+                       
+                       <div class="">
+                           <div class="card">
+                               <div class="card-header py-3">
+                                   <div class="">
+                                       <h5 class="">   Creer un jour feriée</h5>
+                                   </div>
+                               </div>
+                               <form class="card-body" method="POST" action="{%url 'update_createJourFerier' id%}">
+                                   {% csrf_token %}
+                                 
+                                 
+                                  <div class="form-group">
+                    <label for="id_intitule">Libelle</label>
+                    <input type="text" class="form-control" id="id_libelle" value="{{ jourFerier.libelle }}" name="libelle" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="id_intitule">Date</label>
+                    <input type="date" class="form-control" id="id_date" value="{{ jourFerier.date }}" name="date" required>
+                </div>
+
+                <!-- Description -->
+                <div class="form-group">
+                    <label for="id_description">Description</label>
+                    <textarea class="form-control" id="id_description"  name="description"  required>{{jourFerier.description }}</textarea>
+                </div>
+                 
+                 
+                                   <div class="card-footer">
+                                       <div class="float-right">
+                                           <button type="submit" class="btn btn-primary">Enregister</button>
+                                           <button type="reset" class="btn btn-secondary" >Annuler</button>
+                                       </div>
+                                     
+                                   </div>
+                             </form>
+                             
+                           </div>
+                       </div>
+                   </div>
+
+
+
+ {% endblock %}
+
+ 

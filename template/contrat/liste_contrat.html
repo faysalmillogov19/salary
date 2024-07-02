@@ -1,0 +1,68 @@
+	{% extends 'layout/Layout.html'%}
+	<!-- Page Heading -->
+	{% load static %}
+	{% block content %}
+
+
+
+
+<div class="card shadow mb-4">
+				<div class="card-header py-3">
+								<div class="">
+												<h4 class="">Liste des contrat de chaque employé </h4>
+								</div>
+								<div class="">                              
+												<a href="{% url 'add_contrat' %}" class="btn btn-outline-info float-right">NOUVEAU <i class="fas fa-plus"></i></a>
+								</div>      
+				</div>
+				<div class="card-body">
+								<div class="table-responsive">
+												{% if contrats %}
+												<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+																<thead>
+																				<tr>																							
+																								<th>Nom employé</th>
+																								<th>Numéro matricule employé</th>
+																								<th>Type contrat</th>
+																								<th>Structure</th>
+																								<!-- <th>Employe</th> -->
+																								<th>Date debut</th>
+																								<th >Date fin</th>
+																								<th>Action</th>
+																				</tr>
+																</thead>
+																<tbody>
+																				{% for contrat in contrats %}
+																								<tr>
+																									
+																												<td>{{contrat.employe.nom|add:" "|add:contrat.employe.prenoms}}</td>
+																												<td>{{contrat.employe.numero_matricule}}</td>
+																												<td>{{contrat.type_contrat}}</td>
+																												<td>{{contrat.structure}}</td>
+																												<td>{{contrat.date_debut| date:"d/m/y"}}</td>
+																												<td>{{contrat.date_fin| date:"d/m/y"}}</td>
+																												<td >
+																																<div class="d-flex">
+																																				
+																																			<a href="{% url 'update_contrat' contrat.id %}" type="button" class="btn btn-outline-success"><i class="fas fa-pen"></i></a>
+																																																															
+																																				<button type="button" data-toggle="modal" data-target="#delete{{contrat.id}}" class="btn btn-outline-danger"><i class="fas fa-trash"></i></button>
+																																				<a type="button" href="{% url 'detail_contrat' contrat.id%}" class="btn btn-outline-primary"><i class="fa fa-info"></i></a>
+																																				<a type="button" href="{% url 'liste_paiement' contrat.id%}" class="btn btn-outline-warning"><i class="fa fa-coins "></i></a>
+																																				<a type="button" href="{% url 'contrat_pdf' contrat.id %}" class="btn btn-outline-primary"><i class="fa fa-file"></i></a>
+																																				
+																																</div>
+																												</td>
+																								</tr>
+																								{% include  'contrat/modal_update_contrat_form.html' %}
+																				{% endfor %}
+																																								
+																</tbody>
+												</table>
+																{% else %}
+																				<h4 class="text-center alert alert-warning"> Pas de contrat </h4>
+																{% endif %}
+								</div>
+				</div>
+</div>
+{% endblock %}

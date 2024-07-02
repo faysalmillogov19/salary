@@ -1,0 +1,62 @@
+{% extends 'layout/Layout.html' %}
+<!-- Page Heading -->
+{% load static %}
+{% block content %}
+  {% include 'modal_form.html' %}
+
+  <div class="container">
+    <div class="">
+      <div class="card">
+        <div class="card-header py-3">
+          <div class="">
+            <h5 class="">Créer tarif heure supplémentaire</h5>
+          </div>
+        </div>
+        <form class="card-body" method="POST" action="{%url 'update_createTarifHeureSup' id%}">
+          {% csrf_token %}
+          <div class="form-group">
+            <label for="id_intitule">Taux (%)</label>
+            <input type="text" class="form-control" id="id_taux" value="{{ tarifHeureSup.taux }}" name="taux" required>
+          </div>
+          <div>
+            <!-- Champ pour True -->
+            <input type="checkbox" id="id_jourFerier" name="jourFerier" value="on">
+            <!-- Champ caché pour False -->
+            <label for="id_mon_champ_bool">jour ferier</label>
+            <input type="hidden" name="id_jourFerier" value="">
+          </div>
+          <div>
+            <!-- Champ pour True -->
+            <input type="checkbox" id="id_jourFerier" name="jourFerier" value="on">
+            <!-- Champ caché pour False -->
+            <label for="id_mon_champ_bool">Nuit</label>
+            <input type="hidden" name="id_jourFerier" value="">
+          </div>
+          <div class="card-footer">
+            <div class="float-right">
+              <button type="submit" class="btn btn-primary">Enregistrer</button>
+              <button type="reset" class="btn btn-secondary">Annuler</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      document.getElementById('id_taux').addEventListener('input', function() {
+        var tauxInput = this;
+        var tauxValue = tauxInput.value;
+        // Utilisez une expression régulière pour vérifier que la valeur est composée de chiffres et une virgule
+        if (!/^[0-9,]*$/.test(tauxValue)) {
+          // Affichez un message d'erreur ou effectuez une autre action
+          alert("Veuillez entrer uniquement des chiffres et une virgule.");
+          // Réinitialisez la valeur à une chaîne ne contenant que des chiffres et une virgule
+          tauxInput.value = tauxValue.replace(/[^0-9,]/g, '');
+        }
+      });
+    });
+  </script>
+
+{% endblock %}

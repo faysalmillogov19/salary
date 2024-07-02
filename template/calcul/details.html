@@ -1,0 +1,89 @@
+{% extends 'layout/Layout.html'%}
+<!-- Page Heading -->
+{% load static %}
+{% block content %}
+
+{% include  'calcul/pointage_form.html' %}
+
+<div class="shadow mb-4">
+            <div class="card">
+                    <div class=" card-header">       
+                        <div class="float-right">
+                            <button class="btn btn-primary"><i class="fa fa-print" onclick="printPageArea('printableArea')"></i></button>
+                        </div>                            
+
+                    </div>
+                       
+                     <div class="card-body" id="printableArea">
+                            <div class="row text-center">
+                                <div class="col-4">
+                                    <img class="img-thumbnail " src="{% static 'img/logo.jpeg' %}">
+                                </div>
+                                <div class="col-5">
+                                    <p class="text-center">HUMAN PROJECT</p>
+                                    <p>CITE 1200 Logements</p>
+                                    <p>
+                                        01 BP 1612 Ouagadougou 01 
+                                            BURKINA FASO,
+
+                                    </p>
+
+                                </div>
+                                <div class="col-3">
+                                    <p class="">Bulletin de salaire</p>
+                                    <p>{{paiement.type_paiement.libelle}}</p>
+                                    <p>Mois de {{paiement.mois.libelle}} {{paiement.annee.exercice}}</p>
+                                </div>
+
+                            </div>
+                            <div>
+                                <br>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <p class="pst-group-item">Nom: {{paiement.contrat.employe.nom}}</p>
+                                    <p class="pst-group-item">Prénom: {{paiement.contrat.employe.prenoms}}</p>
+                                    <p class="pst-group-item">Adresse: <mark>{{paiement.contrat.employe.telephone}}</mark> </p>
+                                    <p class="pst-group-item">Structure : <mark>{{paiement.contrat.structure}}</p>
+                                    <p class="pst-group-item">Fonction : <mark>{{paiement.contrat.description_poste}}</p>
+                                </div>
+                                <div class="col-6">
+                                    <p></p>
+                                    <p class="pst-group-item">Situation matrimoniale: <mark>{{paiement.contrat.employe.situation_matrimoniale}}</p>
+                                    <p class="pst-group-item">Nombre d'enfant: <mark>{{paiement.contrat.employe.nombre_enfant}}</mark></p>
+                                    <p class="pst-group-item">Période: <mark>{{paiement.mois.libelle}} {{paiement.annee.exercice}}</mark></p>
+                                </div>
+                                
+                            </div>
+                           <div class="table-responsive card-body">
+                               <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                   <thead>
+                                       <tr>
+                                         <th>Salaire net</th>
+                                         <th>Salaire brut</th>
+                                         <th>Salaire Base</th>
+                                         <th>CNSS</th>
+                                         <th>IUTS</th>                                 
+                                       </tr>
+                                   </thead>
+                                   <tbody>
+                                      <tr>
+                                           <td>{{paiement.salaire_net |floatformat:2}}</td>
+                                           <td>{{paiement.salaire_brut |floatformat:2}}</td>
+                                           <td>{{paiement.salaire_base |floatformat:2}}</td>
+                                           <td>{{paiement.cotitsation_cnss |floatformat:2}}</td>
+                                           <td>{{paiement.iuts |floatformat:2}}</td>
+                                           
+                                      </tr>
+                                       
+                                   </tbody>
+                                   
+                               </table>
+                           </div>
+                    </div>
+          </div>
+</div>
+
+
+
+ {% endblock %}

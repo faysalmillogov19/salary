@@ -1,0 +1,19 @@
+{% extends 'stats/menu.html'%}
+<!-- Page Heading -->
+{% load static %}
+{% block menu %}
+<div class="col-9 card">            
+  <div class="d-flex px-2 py-1">
+    <img src="{% static file_url %}" class=" border-radius-lg">
+  </div>
+</div>
+<div class="col-3 card">
+  <ul class="list-group my-auto">
+    <li class="list-group-item text-center">Détails</li>
+    {% for p in paiements %}
+      <li class="list-group-item"> <mark>{{p.contrat__structure__denomination}}</mark> : <strong>{{p.salaire_brut |floatformat:0}}</strong> </li>
+    {% endfor %}
+  </ul>
+</div>
+
+{% endblock %}

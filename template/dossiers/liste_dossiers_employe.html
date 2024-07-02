@@ -1,0 +1,75 @@
+ {% extends 'layout/Layout.html'%}
+
+ {% load static %}
+ {% block content %}
+
+ {% include  'dossiers/ajout_dossiers.html' %} 
+  
+
+
+    
+<div class="card-body">
+    <div class="row">
+        <div class="col-md-5">
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <div class="">
+                        <h4 class="">Liste des dossiers de {{employe.nom}}</h4>
+                    </div>
+                    <ul class="list-group">
+                        <li class="list-group-item">Nom de l'employé : {{employe.nom}}</li>
+                        <li class="list-group-item">Matricule : {{employe.numero_matricule}}</li>                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-7">
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <div class="">
+                        <h4 class="">Liste des dossiers de {{employe.nom}} </h4>
+                    </div>
+                    <div class="">                              
+                        <button class="btn btn-outline-info float-right" data-toggle="modal" data-target="#addDossiers{{employe.id}}">NOUVEAU <i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th>Libelle</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for dossiers in files %}
+                                <tr>
+                                    <td><a href="{{dossiers.file.url}}" target="_blank">{{dossiers.libelle}}</a></td>
+                                    
+                                    <td>
+                                        <div class="d-flex">
+                                            <div><button type="button" data-toggle="modal" data-target="#updateDossiers{{dossiers.id}}" class="btn btn-outline-success mb-2" ><i class="fas fa-pen"></i></button></div>
+
+                                            <div><button type="button" data-toggle="modal" data-target="#deleteDossiers{{dossiers.id}}" class="btn btn-outline-danger mb-2"><i class="fas fa-trash"></i></button></div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                {% include  'dossiers/delete_dossiers.html' %}
+                                {% include  'dossiers/update_dossier.html' %}
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                </div>
+                    
+                       
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,38 @@
+ {% extends 'layout/Layout.html'%}
+ <!-- Page Heading -->
+ {% load static %}
+ {% block content %}
+
+<div class="container">
+    <div>
+        <h3 class="mt-4">Détails du Contrat</h3>
+        <p class="font-weight-bold">Nom employé : {{ detailcontrats.employe.nom }}</p>
+        <p class="font-weight-bold">Prénom(s) employé : {{ detailcontrats.employe.prenoms }}</p>
+        <p class="font-weight-bold">Matricule de l'employé : {{ detailcontrats.employe.numero_matricule }}</p>
+        <p class="font-weight-bold">Type de Contrat: {{ detailcontrats.type_contrat }}</p>
+        <p class="font-weight-bold">Structure: {{ detailcontrats.structure }}</p>
+        <p class="font-weight-bold">Description du Poste: {{ detailcontrats.description_poste }}</p>
+        <p class="font-weight-bold">Description du profile: {{ detailcontrats.description_profil }}</p>
+        <p class="font-weight-bold">Lieu d'affectation: {{ detailcontrats.lieu_affectation }}</p>
+        <p class="font-weight-bold">Diplôme requis pour le poste: {{ detailcontrats.diplome_requis }}</p>
+        <p class="font-weight-bold">Date de début du contrat: {{ detailcontrats.date_debut }}</p>
+        <p class="font-weight-bold">Date de fin du contrat: {{ detailcontrats.date_fin }}</p>
+        <p class="font-weight-bold">Type d'employé: {{ detailcontrats.mode_calcul }}</p>
+        <p class="font-weight-bold">Un cadre: {{ detailcontrats.cadre }}</p>
+        <div class="mt-4">
+            <h1 class="mb-4">Les éléments qui composent le salaire</h1>
+            <p class="font-weight-bold">Salaire de base: {{ detailcontrats.salaire_base }}</p>
+            <p class="font-weight-bold">Indemnité logement: {{ detailcontrats.indemnite_logement }}</p>
+            <p class="font-weight-bold">Indemnité de transport: {{ detailcontrats.indemnite_transport }}</p>
+            <p class="font-weight-bold">Indemnité de fonction: {{ detailcontrats.indemnite_fonction }}</p>
+            <p class="font-weight-bold">Prime de nourriture: {{ detailcontrats.prime_nourritur }}</p>
+            <p class="font-weight-bold">Prime de lait: {{ detailcontrats.prime_lait }}</p>
+            <p class="font-weight-bold">Prime de silissure: {{ detailcontrats.prime_silissure }}</p>
+            <p class="font-weight-bold">Nombre d'années de travail: {{ detailcontrats.nombre_annee_travail }}</p>
+            <p class="font-weight-bold">Prime d'ancienneté: {{ detailcontrats.prime_anciennete }}</p>
+            <p class="font-weight-bold">Prime de quart: {{ detailcontrats.prime_quart }}</p>
+            <p class="font-weight-bold">Prime de panier: {{ detailcontrats.prime_panier }}</p>
+        </div>
+    </div>
+</div>
+{% endblock %}

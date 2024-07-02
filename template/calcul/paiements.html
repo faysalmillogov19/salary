@@ -1,0 +1,104 @@
+{% extends 'layout/Layout.html'%}
+<!-- Page Heading -->
+{% load static %}
+{% block content %}
+
+{% include  'calcul/pointage_form.html' %}
+{% include  'calcul/add_ICP.html' %}
+{% include  'calcul/add_IFC.html' %}
+
+
+<div class="shadow mb-4">
+            <div class="row">
+                    <div class="col-3">       
+                      <ul class="list-group">
+                        <li class="list-group-item active">{{contrat.employe.nom}} {{contrat.employe.prenoms}}</li>
+                        <li class="list-group-item">Matricule: <mark>{{contrat.employe.numero_matricule}}</mark> </li>
+                        <li class="list-group-item">Date / lieu naissance: <mark>{{contrat.employe.date_naissance | date:'d-m-Y'}} / {{contrat.employe.lieu_naissance}} </mark></li>
+                        <li class="list-group-item">Nombre d'enfant: <mark>{{contrat.employe.nombre_enfant}}</mark></li>
+                        <li class="list-group-item">Situation matrimoniale: <mark>{{contrat.employe.situation_matrimoniale}}</li>
+                        <li class="list-group-item">Situation matrimoniale: <mark>{{contrat.employe.situation_matrimoniale}}</li>
+                        <li class="list-group-item">Structure : <mark>{{contrat.structure}}</li>
+                        <li class="list-group-item">Poste : <mark>{{contrat.description_poste}}</li>
+                        <li class="list-group-item">Contrat : <mark>{{contrat.type_contrat}} ({{contrat.date_debut | date:'d/m/Y'}} - {{contrat.date_fin | date:'d/m/Y'}})</li>
+                        <li class="list-group-item"> <mark></mark></li>
+                      </ul>
+                    </div>
+                       
+                     <div class="col-9 card">
+                            <div class="card-header"> 
+                            <div class="float-right">
+                              <button type="button" data-toggle="modal" data-target="#pointage_form" class="btn btn-outline-info"><i class="fas fa-plus">Salaire Mensuel</i></button>                             
+                              <button type="button" data-toggle="modal" data-target="#add_icp" class="btn btn-outline-info"><i class="fas fa-plus">ICP</i></button> 
+                              <button type="button" data-toggle="modal" data-target="#add_ifc" class="btn btn-outline-info"><i class="fas fa-plus">IFC</i></button>                             
+                            
+                            </div>
+                            </div>
+                           <div class="table-responsive card-body">
+                               <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                   <thead>
+                                       <tr>
+                                         <th>Objet</th>
+                                         <th>Mois</th>
+                                         <th>Annee</th>
+                                         <th>Salaire net</th>
+                                         <th>Salaire brut</th>
+                                         <th>Salaire Base</th>
+                                         <th>CNSS</th>
+                                         <th>Cnss patronal</th> 
+                                         <th>IUTS</th> 
+                                         <th>Prime de panier</th>
+                                         <th>Prime de Quart</th>  
+                                         <th>Prime ancienneté</th>                             
+                                         <th>Action</th>
+                                       </tr>
+                                   </thead>
+                                   <tbody>
+                                     {% for d in data %}
+                                      <tr>
+                                           <td>{{d.paiement.type_paiement.code}}</td>
+                                           <td>{{d.paiement.mois.libelle}}</td>
+                                           <td>{{d.paiement.annee.exercice}}</td>
+                                           <td>{{d.paiement.salaire_net |floatformat:2}}</td>
+                                           <td>{{d.paiement.salaire_brut |floatformat:2}}</td>
+                                           <td>{{d.paiement.salaire_base |floatformat:2}}</td>
+                                           <td>{{d.paiement.cotitsation_cnss |floatformat:2}}</td>
+                                           <td>{{d.paiement.cnss_patronal |floatformat:2}}</td>
+                                           <td>{{d.paiement.iuts |floatformat:2}}</td>
+                                           <td>{{d.paiement.prime_panier |floatformat:2}}</td>
+                                           <td>{{d.paiement.prime_quart |floatformat:2}}</td>
+                                           <td>{{d.paiement.prime_ancien |floatformat:2}}</td>
+                                           <td>
+                                            {% if not d.paiement.payer %}
+                                              {% if d.paiement.type_paiement.id == 2 %}
+                                                <button type="button" data-toggle="modal" data-target="#update_icp{{d.id}}" class="btn btn-outline-success"><i class="fas fa-pen"></i></button> 
+                                                {% elif d.paiement.type_paiement.id == 3 %}
+                                                <button type="button" data-toggle="modal" data-target="#update_ifc{{d.id}}" class="btn btn-outline-success"><i class="fas fa-pen"></i></button> 
+                                              {% else %}
+                                                <button type="button" data-toggle="modal" data-target="#pointage_form{{d.id}}" class="btn btn-outline-success"><i class="fas fa-pen"></i></button> 
+                                              {% endif %}
+                                              <button type="button" data-toggle="modal" data-target="#delete{{d.id}}" class="btn btn-outline-danger"><i class="fas fa-trash"></i></button> 
+                                              <button type="button" data-toggle="modal" data-target="#payer{{d.id}}" class="btn btn-outline-warning"><i class="fas fa-coins"></i></button> 
+                                            {% else %}
+                                              <a href="{% url 'detail_paiement' d.paiement.id %}" type="button" class="btn btn-outline-info"><i class="fas fa-file"></i></a>  
+                                            {% endif %}
+                                           </td>
+                                      </tr>
+                                      {% include 'calcul/delete.html' %}
+                                      {% include 'calcul/update_pointage.html' %}
+                                      {% include 'calcul/update_ICP.html' %}
+                                      {% include 'calcul/update_IFC.html' %}
+                                      {% include 'calcul/payer.html' %}
+                                     {% endfor %}
+                                       
+                                   </tbody>
+                                   
+                               </table>
+                           </div>
+                    </div>
+          </div>
+</div>
+
+
+
+ {% endblock %}

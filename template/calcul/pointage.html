@@ -1,0 +1,93 @@
+{% extends 'layout/Layout.html'%}
+<!-- Page Heading -->
+{% load static %}
+{% block content %}
+
+{% include  'modal_form.html' %}
+
+
+<div class="container">
+                       
+                       <div class="">
+                           <div class="card">
+                               <div class="card-header py-3">
+                                   <div class="">
+                                       <h5 class=""> Pointage</h5>
+                                   </div>
+                               </div>
+                               <form class="card-body" method="POST" action="">
+                                   {% csrf_token %}  
+                         
+                               
+               
+                                   <div class="row">
+                                    <div class="form-group col-6 font-weight-bold">
+                    <label for="id_description">Nombre de quart</label>
+                    <input type="text" class="form-control" >
+                </div>
+                <div class="form-group col-6 font-weight-bold">
+                    <label for="id_description">Nombre de jour de travail</label>
+                    <input type="text" class="form-control" >
+                </div>
+             
+            </div>
+            <div class="row">
+                <div class="form-group col-6 font-weight-bold">
+<label for="id_description">Surplus de salaire</label>
+<input type="text" class="form-control" >
+</div>
+<div class="form-group col-6 font-weight-bold">
+<label for="id_description">Reliquat</label>
+<input type="text" class="form-control" >
+</div>
+
+</div>
+          
+                <div class="row">
+                    <div class="form-group col-4 font-weight-bold">
+                        <label for="id_description">Pourcentage Normal</label>
+                        <input type="text" class="form-control" >
+                    </div>
+                    <div class="form-group col-4 font-weight-bold">
+                        <label for="id_description">Pourcentage à 15%</label>
+                        <input type="text" class="form-control" >
+                    </div>
+                    <div class="form-group col-4 font-weight-bold"">
+                        <label for="id_description">Pourcentage à 35%</label>
+                        <input type="text" class="form-control" >
+                    </div>
+                </div>
+
+                    <div class="row">
+                    <div class="form-group col-4 font-weight-bold">
+                        <label for="id_description">Pourcentage à 50%</label>
+                        <input type="text" class="form-control" >
+                    </div>
+                    <div class="form-group col-4 font-weight-bold">
+                        <label for="id_description">Pourcentage à 60%</label>
+                        <input type="text" class="form-control" >
+                    </div>
+                    <div class="form-group col-4 font-weight-bold">
+                        <label for="id_description">Pourcentage à 120%</label>
+                        <input type="text" class="form-control" >
+                    </div>
+
+                </div>
+           
+                
+                                   <div class="card-footer">
+                                       <div class="float-right">
+                                           <button type="submit" class="btn btn-primary">Enregister</button>
+                                           <button type="reset" class="btn btn-secondary" >Annuler</button>
+                                       </div>
+                                     
+                                   </div>
+                             </form>
+                             
+                           </div>
+                       </div>
+                   </div>
+
+ {% endblock %}
+
+ 

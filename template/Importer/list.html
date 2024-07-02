@@ -1,0 +1,59 @@
+{% extends 'layout/Layout.html'%}
+
+{% load static %}
+{% block content %}
+
+<div class="card shadow mb-4">
+   <div class="card-header py-3">
+       <div class="">
+           <h4 class="">Liste d'importation</h4>
+       </div>
+       
+       <div class="">                              
+           <a class="btn btn-outline-info float-right" href="{% url 'personel' %}">Personel <i class="fas fa-user"></i></a>
+       </div>
+       <div class="">                              
+         
+           
+      
+           </div>
+   </div>
+       <div class="card-body">
+           <div class="table-responsive">
+               {% if data %}
+               <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                   <thead>
+                       <tr>
+                           <th>Matricule</th>
+                           <th>Nom</th>
+                           <th>Prenom</th>
+                           <th>Date naissance</th>
+                           <th>Lieu naissance</th>
+                           <th>Nombre enfant</th>
+                           <th>Spécialité</th>
+                       </tr>
+                   </thead>
+                       <tbody>
+                           {% for employe in data %}
+                           <tr>
+                               <td>{{employe.numero_matricule}}</td>
+                               <td>{{employe.nom}}</td>
+                               <td>{{employe.prenoms}}</td>
+                               <td>{{employe.date_naissance}}</td>
+                               <td>{{employe.lieu_naissance}}</td>
+                               <td>{{employe.nombre_enfant}}</td>
+                               <td>{{employe.specialite}}</td>                                                                                                                                              
+                           </tr>
+
+                              
+                            {% endfor %}
+                                       
+                       </tbody>
+               </table>
+               {% else %}
+               <h4 class="text-center alert alert-warning"> Un problème est survenu lors de l'importation. Veillez vérifier le fichier à iporter </h4>
+               {% endif %}
+           </div>
+       </div>
+   </div>
+{% endblock %}

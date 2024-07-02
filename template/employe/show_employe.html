@@ -1,0 +1,24 @@
+{% extends 'layout/Layout.html'%}
+
+{% load static %}
+{% block content %}
+<div class="container mt-5">
+    <div class="card">
+        <div class="card-body">
+            <h3 class="card-title">Détails de l'employé</h3>
+            <p class="card-text font-weight-bold">Numéro matricule: {{ employe.numero_matricule }}</p>
+            <p class="card-text font-weight-bold">Nom employé : {{ employe.nom }} {{ employe.prenoms }}</p>
+            <p class="card-text font-weight-bold">Lieu et date de naissance : {{ employe.date_naissance }} à {{ employe.lieu_naissance }}</p>
+            <p class="card-text font-weight-bold">Sexe: {{ employe.sexe }}</p>
+            <p class="card-text font-weight-bold">Situation matrimoniale: {{ employe.situation_matrimoniale }}</p>
+            <p class="card-text font-weight-bold">Nombre d'enfant: {{ employe.nombre_enfant }}</p>
+            <p class="card-text font-weight-bold">Adresse téléphonie et électronique : Tél: {{ employe.telephone }} Email: {{ employe.email}}</p>
+            <p class="card-text font-weight-bold">Adresse géographique: {{ employe.adresse }}</p>
+            <p class="card-text font-weight-bold">Numéro de CNIB: {{ employe.numero_cnib }}</p>
+            <p class="card-text font-weight-bold">Profession: {{ employe.profession }}</p>
+            <p class="card-text font-weight-bold">Dernier diplôme: {{ employe.dernier_diplome }}</p>
+            <p class="card-text font-weight-bold">Catégorie/Spécialité/Option: {{ employe.categorie }}/{{ employe.specialite }}/{{ employe.option }}</p>
+        </div>
+    </div>
+</div>
+{% endblock %}
